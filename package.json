@@ -61,6 +61,7 @@
     "axios": "^0.19.2",
     "babel-loader": "^8.0.6",
     "electron": "^8.1.1",
-    "gettext-parser": "^4.0.2"
+    "gettext-parser": "^4.0.2",
+    "react-gettext-parser": "^1.13.0"
   }
 }

@@ -13,6 +13,6 @@
         "baseUrl": "./src"
     },
     "include": [
-        "src"
+        "src", "../gettext-content/src/services/translator.service.ts", "../gettext-content/src/services/md5.ts", "../gettext-content/src/services/config.ts"
     ]
 }

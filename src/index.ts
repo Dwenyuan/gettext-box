@@ -1,10 +1,9 @@
 // Modules to control application life and create native browser window
 
+import { menuTemplate } from './config/menus'
 import { app, BrowserWindow, dialog, ipcMain, Menu } from 'electron'
-import * as fs from 'fs'
-import { po } from 'gettext-parser'
 import * as path from 'path'
-import { translatorByBaidu } from './translator.services/translator.service'
+import { translatorByBaidu } from '../../gettext-content/src/services/translator.service'
 
 function createWindow () {
   // Create the browser window.
@@ -18,35 +17,7 @@ function createWindow () {
       preload: path.join(__dirname, 'preload.js')
     }
   })
-  const menu = Menu.buildFromTemplate([
-    {
-      id: '1',
-      label: 'File',
-      submenu: [
-        {
-          id: '11',
-          label: 'Open File',
-          click: async () => {
-            const { filePaths: [filePath] = [] } = await dialog.showOpenDialog({
-              properties: ['openFile'],
-              filters: [{ name: 'po file', extensions: ['po', 'pot'] }]
-            })
-
-            const content = await fs.promises.readFile(filePath, {
-              encoding: 'utf-8',
-              flag: 'r+'
-            })
-
-            mainWindow.webContents.send('readed', po.parse(content))
-          }
-        },
-        { role: 'close' }
-      ]
-    },
-    { role: 'editMenu' },
-    { role: 'viewMenu' },
-    { role: 'windowMenu' }
-  ])
+  const menu = Menu.buildFromTemplate(menuTemplate(mainWindow))
   Menu.setApplicationMenu(menu)
   // and load the index.html of the app.
   mainWindow.loadURL('http://localhost:3000/')
