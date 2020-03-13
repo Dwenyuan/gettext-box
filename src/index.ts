@@ -1,9 +1,9 @@
 // Modules to control application life and create native browser window
 
 import { menuTemplate } from './config/menus'
-import { app, BrowserWindow, dialog, ipcMain, Menu } from 'electron'
+import { app, BrowserWindow, Menu } from 'electron'
 import * as path from 'path'
-import { translatorByBaidu } from '../../gettext-content/src/services/translator.service'
+import { initListener } from 'services/listener'
 
 function createWindow () {
   // Create the browser window.
@@ -22,24 +22,10 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadURL('http://localhost:3000/')
 
+  initListener(mainWindow)
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
-
-  ipcMain.on('get-translation', (event, source) => {
-    translatorByBaidu(source)
-      .then(res => {
-        console.log('res', res)
-        mainWindow.webContents.send('translated', res.data)
-      })
-      .catch(err => console.error('err', err))
-  })
 }
-ipcMain.on('click', (event, message) => console.log(message))
-ipcMain.on('open-directory', () =>
-  dialog
-    .showOpenDialog({ properties: ['openDirectory'] })
-    .then(files => console.log(files))
-)
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
