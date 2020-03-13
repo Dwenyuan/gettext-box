@@ -1,0 +1,30 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "启动main",
+            "program": "${workspaceFolder}/node_modules/.bin/webpack",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "args": [
+                "--watch"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "启动Electron",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+            "program": "${workspaceFolder}/build/main.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+    ]
+}
