@@ -27,3 +27,14 @@ export async function readPoFile (filePath?: string) {
     return { filePath: path, content: po.parse(content) }
   }
 }
+export async function readDataFile () {
+  const { filePaths: [path] = [] } = await dialog.showOpenDialog({
+    properties: ['openFile'],
+    filters: [{ name: 'JSON file', extensions: ['json'] }]
+  })
+  const content = await fs.promises.readFile(path, {
+    encoding: 'utf-8',
+    flag: 'r+'
+  })
+  return { filePath: path, content: JSON.parse(content) }
+}

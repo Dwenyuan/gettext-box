@@ -1,5 +1,8 @@
-import { extractMessagesFromGlob } from 'react-gettext-parser'
-
+import { flatten } from 'lodash'
+import path from 'path'
+import { extractMessagesFromGlob, toPot } from 'react-gettext-parser'
+// eslint-disable-next-line no-unused-vars
+import { TranslationHeaders } from 'bean/translation-bean'
 /**
  * 扫描指定目录下的文件，并提取翻译
  *
@@ -7,9 +10,25 @@ import { extractMessagesFromGlob } from 'react-gettext-parser'
  * @param {string[]} paths
  * @returns
  */
-export function ScanFiles (paths: string[]) {
-  const message = extractMessagesFromGlob(
-    paths.map(v => v + '/**/{*.js,*.jsx,*.ts,*.tsx}')
+export function scanFiles (
+  paths: string[],
+  transformHeaders: TranslationHeaders
+) {
+  const list = paths.map(v =>
+    ['js', 'jsx', 'ts', 'tsx'].map(ex => path.join(v, '/**/*.' + ex))
   )
-  return message
+  const target = flatten(list)
+  const message = extractMessagesFromGlob(target, {
+    GetText: {
+      message: 'msgid',
+      messagePlural: 'msgid_plural',
+      context: 'msgctxt',
+      comment: 'comment'
+    },
+    funcArgumentsMap: {
+      __: ['msgid', 'msgid_plural', 'msgctxt']
+    },
+    trim: true
+  })
+  return toPot(message, { transformHeaders: () => transformHeaders })
 }
