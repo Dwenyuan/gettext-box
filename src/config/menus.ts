@@ -26,6 +26,7 @@ export function menuTemplate (mainWindow: BrowserWindow): Menus {
         {
           id: '12',
           label: '保存',
+          accelerator: 'CmdOrCtrl+s',
           click: async () => {
             await mainWindow.webContents.send('save-file')
           }

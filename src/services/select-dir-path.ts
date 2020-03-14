@@ -1,7 +1,7 @@
 import { dialog } from 'electron'
 export async function selectDirPath () {
   const { filePaths = [] } = await dialog.showOpenDialog({
-    properties: ['openDirectory']
+    properties: ['openDirectory', 'multiSelections']
   })
   return filePaths
 }
