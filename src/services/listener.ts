@@ -29,9 +29,15 @@ export function initListener (mainWindow: BrowserWindow) {
 
   ipcMain.on(
     'scan-files',
-    async (e, param: { paths: string[]; transformHeaders: TranslationHeaders }) => {
+    async (
+      e,
+      param: { paths: string[]; transformHeaders: TranslationHeaders }
+    ) => {
       const { paths, transformHeaders } = param
       const dirPaths = isEmpty(paths) ? await selectDirPath() : paths
+      if (isEmpty(dirPaths)) {
+        mainWindow.webContents.send('scan-finish')
+      }
       const message = await scanFiles(dirPaths, transformHeaders)
       mainWindow.webContents.send('scan-finish', message)
     }
