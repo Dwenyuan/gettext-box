@@ -7,7 +7,6 @@ import {
   MenuItem
 } from 'electron'
 import { readPoFile } from 'services/read-po-file'
-import { selectDirPath } from 'services/select-dir-path'
 
 type Menus = Array<MenuItemConstructorOptions | MenuItem>;
 export function menuTemplate (mainWindow: BrowserWindow): Menus {
@@ -20,15 +19,22 @@ export function menuTemplate (mainWindow: BrowserWindow): Menus {
           id: '11',
           label: 'Open File',
           click: async () => {
-            const content = await readPoFile()
-            mainWindow.webContents.send('readed', content)
+            const { filePath, content } = await readPoFile()
+            mainWindow.webContents.send('readed', { filePath, content })
           }
         },
         {
           id: '12',
-          label: 'Open Dir',
+          label: '保存',
           click: async () => {
-            await selectDirPath()
+            await mainWindow.webContents.send('save-file')
+          }
+        },
+        {
+          id: '13',
+          label: '卸载文件',
+          click: () => {
+            mainWindow.webContents.send('unread-file')
           }
         },
         { role: 'close' }

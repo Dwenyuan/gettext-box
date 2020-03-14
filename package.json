@@ -22,7 +22,7 @@
   "scripts": {
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "start": "electron .",
+    "start": "electron --inspect=5858 .",
     "build": "webpack",
     "watch": "webpack --watch"
   },
@@ -41,6 +41,7 @@
     "@typescript-eslint/parser": "^2.23.0",
     "awesome-typescript-loader": "^5.2.1",
     "clean-webpack-plugin": "^3.0.0",
+    "electron": "^8.1.1",
     "electron-builder": "^22.3.6",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
@@ -60,7 +61,7 @@
     "@babel/core": "^7.8.7",
     "axios": "^0.19.2",
     "babel-loader": "^8.0.6",
-    "electron": "^8.1.1",
+    "electron-localstorage": "^1.0.5",
     "gettext-parser": "^4.0.2",
     "react-gettext-parser": "^1.13.0"
   }
