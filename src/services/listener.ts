@@ -20,6 +20,7 @@ export function initListener (mainWindow: BrowserWindow) {
 
   ipcMain.on('save-file', async (_e, { filePath, content }) => {
     await saveFile(mainWindow, filePath, content)
+    mainWindow.webContents.send('save-file-complete')
   })
 
   ipcMain.on('merge-file', async () => {
