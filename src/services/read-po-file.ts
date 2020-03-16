@@ -1,6 +1,8 @@
 import { dialog } from 'electron'
 import * as fs from 'fs'
+import * as path from 'path'
 import { po } from 'gettext-parser'
+import { readFile, utils } from 'xlsx'
 /**
  * 1. 打开文件对话框
  * 2. 读取po文件
@@ -17,28 +19,58 @@ export async function readPoFile (filePath?: string) {
       })
       return { filePath, content: po.parse(content) }
     } else {
-      const { filePaths: [path] = [] } = await dialog.showOpenDialog({
+      const { filePaths: [source] = [] } = await dialog.showOpenDialog({
         properties: ['openFile'],
         filters: [{ name: 'PO file', extensions: ['po', 'pot'] }]
       })
-      const content = await fs.promises.readFile(path, {
+      const content = await fs.promises.readFile(source, {
         encoding: 'utf-8',
         flag: 'r+'
       })
-      return { filePath: path, content: po.parse(content) }
+      return { filePath: source, content: po.parse(content) }
     }
   } catch (error) {
     console.error(error)
   }
 }
+// TODO: 合并文件需要支持备注合并
 export async function readDataFile () {
-  const { filePaths: [path] = [] } = await dialog.showOpenDialog({
+  const { filePaths: [source] = [] } = await dialog.showOpenDialog({
     properties: ['openFile'],
-    filters: [{ name: 'JSON file', extensions: ['json'] }]
+    filters: [
+      { name: 'json or excel file', extensions: ['json', 'xls', 'xlsx'] }
+    ]
   })
-  const content = await fs.promises.readFile(path, {
-    encoding: 'utf-8',
-    flag: 'r+'
-  })
-  return { filePath: path, content: JSON.parse(content) }
+  if (path.extname(source) === '.json') {
+    const content = await fs.promises.readFile(source, {
+      encoding: 'utf-8',
+      flag: 'r+'
+    })
+    return { filePath: source, content: JSON.parse(content) }
+  }
+  if (/^\.xlsx?$/.test(path.extname(source))) {
+    const { SheetNames = [], Sheets } = readFile(source, { type: 'binary' })
+    const content = SheetNames.reduce(
+      (pre, name) => [
+        ...pre,
+        ...utils.sheet_to_json<{ href: string }>(Sheets[name])
+      ],
+      []
+    )
+    const result = content.reduce(
+      (pre, { subject, translation }) => ({ ...pre, [subject]: translation }),
+      {}
+    )
+    return { filePath: source, content: result }
+  }
+  return { filePath: source, content: {} }
 }
+
+// export function readExcelFile () {
+//   const { SheetNames = [], Sheets } = read(data, { type: 'binary' })
+//   // 还是全部表都导入好了
+//   const content = SheetNames.reduce(
+//     (pre, name) => [...pre, ...utils.sheet_to_json<{ href: string }>(Sheets[name])],
+//     [],
+//   )
+// }

@@ -65,6 +65,7 @@
     "electron-localstorage": "^1.0.5",
     "gettext-parser": "^4.0.2",
     "lodash": "^4.17.15",
-    "react-gettext-parser": "^1.13.0"
+    "react-gettext-parser": "^1.13.0",
+    "xlsx": "^0.15.6"
   }
 }
