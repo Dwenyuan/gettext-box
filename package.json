@@ -66,6 +66,7 @@
     "gettext-parser": "^4.0.2",
     "lodash": "^4.17.15",
     "react-gettext-parser": "^1.13.0",
+    "rxjs": "^6.5.4",
     "xlsx": "^0.15.6"
   }
 }

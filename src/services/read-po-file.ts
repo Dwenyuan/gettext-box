@@ -65,12 +65,3 @@ export async function readDataFile () {
   }
   return { filePath: source, content: {} }
 }
-
-// export function readExcelFile () {
-//   const { SheetNames = [], Sheets } = read(data, { type: 'binary' })
-//   // 还是全部表都导入好了
-//   const content = SheetNames.reduce(
-//     (pre, name) => [...pre, ...utils.sheet_to_json<{ href: string }>(Sheets[name])],
-//     [],
-//   )
-// }

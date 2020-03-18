@@ -1,12 +1,12 @@
 // eslint-disable-next-line no-unused-vars
+import { TranslationHeaders } from 'bean/translation-bean'
+// eslint-disable-next-line no-unused-vars
 import { BrowserWindow, ipcMain } from 'electron'
 import { isEmpty } from 'lodash'
 import { readDataFile, readPoFile } from './read-po-file'
 import { saveFile } from './save-file'
 import { scanFiles } from './scan-files'
 import { selectDirPath } from './select-dir-path'
-// eslint-disable-next-line no-unused-vars
-import { TranslationHeaders } from 'bean/translation-bean'
 export function initListener (mainWindow: BrowserWindow) {
   ipcMain.on('open-dir', async () => {
     const paths = await selectDirPath()
