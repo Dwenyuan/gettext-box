@@ -13,6 +13,13 @@ export interface TranslationBean {
     };
   };
 }
+export interface Comment {
+  reference?: string;
+  translator?: string;
+  extracted?: string;
+  flag?: string;
+  previous?: string;
+}
 export interface Translation {
   msgid?: string;
   comments?: Comment;

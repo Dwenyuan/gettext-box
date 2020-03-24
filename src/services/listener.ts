@@ -7,6 +7,7 @@ import { readDataFile, readPoFile } from './read-po-file'
 import { saveFile } from './save-file'
 import { scanFiles } from './scan-files'
 import { selectDirPath } from './select-dir-path'
+import { exportFile } from './export-file'
 export function initListener (mainWindow: BrowserWindow) {
   ipcMain.on('open-dir', async () => {
     const paths = await selectDirPath()
@@ -31,7 +32,7 @@ export function initListener (mainWindow: BrowserWindow) {
   ipcMain.on(
     'scan-files',
     async (
-      e,
+      _e,
       param: { paths: string[]; transformHeaders: TranslationHeaders }
     ) => {
       const { paths, transformHeaders } = param
@@ -43,4 +44,9 @@ export function initListener (mainWindow: BrowserWindow) {
       mainWindow.webContents.send('scan-finish', message)
     }
   )
+
+  ipcMain.on('export-file', async (_e, { content }) => {
+    await exportFile(mainWindow, content)
+    mainWindow.webContents.send('export-file-complete')
+  })
 }
