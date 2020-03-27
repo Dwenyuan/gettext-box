@@ -12,7 +12,7 @@
 # 流程图
 
 ```mermaid
-graph TD;
+graph LR;
     从po文件打开-->打开文件;
     打开文件-->store数据;
     从pot文件新建-->新建文件;
@@ -23,10 +23,13 @@ graph TD;
     从json合并-->合并文件;
     新建文件-->store数据;
     合并文件-->store数据;
-    store数据-->|更新数据|store数据;
-    store数据-->导出/保存数据;
+    store数据--更新数据-->store数据;
+    store数据-->保存数据;
+    store数据-->导出
 ```
-
+```mermaid
+  
+```
 # 主要功能列表
 
 - [ ] 打开 PO 文件->读取内容->导入 store->并渲染列表

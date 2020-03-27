@@ -24,7 +24,8 @@
     "dist": "electron-builder",
     "start": "electron --inspect=5858 .",
     "build": "webpack",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "extract:translation": "npx react-gettext-parser --config react-gettext-parser.config --output src/locale/messages.pot 'src/**/{*.js,*.jsx,*.ts,*.tsx}'"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -41,7 +42,8 @@
     "@typescript-eslint/parser": "^2.23.0",
     "awesome-typescript-loader": "^5.2.1",
     "clean-webpack-plugin": "^3.0.0",
-    "electron": "^8.1.1",
+    "copy-webpack-plugin": "^5.1.1",
+    "electron": "^8.2.0",
     "electron-builder": "^22.3.6",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
@@ -63,9 +65,11 @@
     "axios": "^0.19.2",
     "babel-loader": "^8.0.6",
     "electron-localstorage": "^1.0.5",
-    "gettext-parser": "^4.0.2",
+    "gettext-parser": "^4.0.3",
     "jed": "^1.1.1",
     "lodash": "^4.17.15",
+    "log4js": "^6.1.2",
+    "po2json": "^0.4.5",
     "react-gettext-parser": "^1.13.0",
     "rxjs": "^6.5.4",
     "xlsx": "^0.15.6"

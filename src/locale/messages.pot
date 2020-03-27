@@ -1,0 +1,13 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"POT-Creation-Date: Fri Mar 27 2020 17:37:03 GMT+0800 (中国标准时间)\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/config/menus.ts:27
+msgctxt "context"
+msgid "new project %d"
+msgid_plural "新建S %d"
+msgstr[0] ""
+msgstr[1] ""

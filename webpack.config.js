@@ -1,6 +1,6 @@
 const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = {
   entry: './src/index.ts',
   target: 'electron-main',
@@ -33,6 +33,10 @@ module.exports = {
     }
   },
   plugins: [
-    new CleanWebpackPlugin()
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, 'src/locale/**/*.po'),
+      to: path.resolve(__dirname, 'build/locale/[name].po')
+    }], {})
+    // new CleanWebpackPlugin()
   ]
 }

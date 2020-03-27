@@ -11,7 +11,9 @@ import { readPoFile } from 'services/read-po-file'
 import { openAndScanFile } from 'services/open-and-scan-file'
 import i18n from '../locale'
 
-const { sprintf } = i18n
+const { dnpgettext } = i18n
+console.log('dnpgettext', dnpgettext)
+
 type Menus = Array<MenuItemConstructorOptions | MenuItem>;
 export function menuTemplate (mainWindow: BrowserWindow): Menus {
   return [
@@ -22,25 +24,29 @@ export function menuTemplate (mainWindow: BrowserWindow): Menus {
       submenu: [
         {
           id: 'new',
-          label: sprintf('新建'),
+          label: i18n
+            .translate('new project %d')
+            .withContext('context')
+            .ifPlural(1, 'default %d keys')
+            .fetch(1),
           submenu: [
             {
               id: 'from pot',
-              label: sprintf('从pot文件新建')
+              label: '从pot文件新建'
             },
             {
               id: 'from project',
-              label: sprintf('扫描项目新建')
+              label: '扫描项目新建'
             }
           ]
         },
         {
           id: 'edit',
-          label: sprintf('打开'),
+          label: '打开',
           submenu: [
             {
               id: 'open',
-              label: sprintf('打开po文件'),
+              label: '打开po文件',
               click: async () => {
                 const { filePath, content } = await readPoFile()
                 mainWindow.webContents.send('readed', { filePath, content })
@@ -56,16 +62,16 @@ export function menuTemplate (mainWindow: BrowserWindow): Menus {
         },
         {
           id: 'export',
-          label: sprintf('导出'),
+          label: '导出',
           submenu: [
             {
               id: 'export excel',
-              label: sprintf('导出全部为excel'),
+              label: '导出全部为excel',
               click: () => mainWindow.webContents.send('export-file')
             },
             {
               id: 'export excel',
-              label: sprintf('导出未翻译部分为excel'),
+              label: '导出未翻译部分为excel',
               click: () => mainWindow.webContents.send('export-file', true)
             }
           ]
