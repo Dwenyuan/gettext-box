@@ -24,6 +24,9 @@ export function menuTemplate (mainWindow: BrowserWindow): Menus {
       submenu: [
         {
           id: 'new',
+          /**
+           * this is commit
+           */
           label: i18n
             .translate('new project %d')
             .withContext('context')

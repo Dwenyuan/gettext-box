@@ -7,12 +7,24 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "执行测试",
+            "program": "${workspaceFolder}/node_modules/.bin/jest",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "启动Electron",
             "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
             "cwd": "${workspaceRoot}",
             "protocol": "inspector",
             "program": "${workspaceFolder}/build/main.js",
-            "runtimeArgs": [".","--enable-loggin"],
+            "runtimeArgs": [
+                ".",
+                "--enable-loggin"
+            ],
             "skipFiles": [
                 "<node_internals>/**"
             ],
