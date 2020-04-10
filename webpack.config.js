@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const production = process.env.PRODUCTION
+
 module.exports = {
   entry: './src/index.ts',
   target: 'electron-main',
@@ -36,7 +39,10 @@ module.exports = {
     new CopyWebpackPlugin([{
       from: path.resolve(__dirname, 'src/locale/**/*.po'),
       to: path.resolve(__dirname, 'build/locale/[name].po')
-    }], {})
+    }], {}),
+    new webpack.DefinePlugin({
+      production
+    })
     // new CleanWebpackPlugin()
   ]
 }

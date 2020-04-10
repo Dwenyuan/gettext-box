@@ -1,6 +1,7 @@
 export const DOMAIN = 'domain'
 export const CONTEXT = 'context'
 export const SINGULAR_KEY = 'singular_key'
+export const KEY = 'key'
 export const PLURAL_KEY = 'plural_key'
 export const VALUE = 'value'
 export const CATEGORY = 'category'
@@ -9,7 +10,7 @@ export const CATEGORY = 'category'
  * 这是定义可提取的方法名
  * @interface IOption
  */
-export interface Ioption {
+export interface Option {
   /**
    * 表示提取javascript中链式调用的方法
    * 例如 jed中的 `translate(key).onDomain(domain)`

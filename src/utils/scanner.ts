@@ -1,15 +1,10 @@
 import { transformSync } from '@babel/core'
 import traverse from '@babel/traverse'
 import { isCallExpression, isMemberExpression } from '@babel/types'
-import {
-  CONTEXT,
-  DOMAIN,
-  Ioption,
-  PLURAL_KEY,
-  SINGULAR_KEY
-} from 'bean/scanner.bean'
+import { CONTEXT, DOMAIN, Option, KEY, PLURAL_KEY, SINGULAR_KEY } from 'bean/scanner.bean'
+import { Translation } from 'bean/translation-bean'
 
-const initOption: Ioption = {
+const initOption: Option = {
   chained: {
     translate: {
       onDomain: [DOMAIN],
@@ -53,7 +48,7 @@ function findCallee (node: any, targetFnName = 'translate'): any {
   }
 }
 
-export function init (sourceCode: string, option: Ioption = {}): void {
+export function init (sourceCode: string, option: Option = {}): Translation {
   const nextOption = {
     ...initOption,
     ...option
@@ -109,6 +104,9 @@ export function init (sourceCode: string, option: Ioption = {}): void {
                   case SINGULAR_KEY:
                     // eslint-disable-next-line @typescript-eslint/camelcase
                     return { ...prev, singular_key: next }
+                  case KEY:
+                    // eslint-disable-next-line @typescript-eslint/camelcase
+                    return { ...prev, singular_key: next }
                   case PLURAL_KEY:
                     // eslint-disable-next-line @typescript-eslint/camelcase
                     return { ...prev, msgid_plural: next }
@@ -131,5 +129,5 @@ export function init (sourceCode: string, option: Ioption = {}): void {
       // console.log(path)
     }
   })
-  console.log(translations)
+  return translations
 }

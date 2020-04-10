@@ -8,7 +8,7 @@ import { saveFile } from './save-file'
 import { scanFiles } from './scan-files'
 import { selectDirPath } from './select-dir-path'
 import { exportFile } from './export-file'
-export function initListener (mainWindow: BrowserWindow) {
+export function initListener (mainWindow: BrowserWindow): void {
   ipcMain.on('open-dir', async () => {
     const paths = await selectDirPath()
     console.log(paths)

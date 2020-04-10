@@ -4,7 +4,27 @@
   "description": "gettext file edit",
   "main": "build/main.js",
   "build": {
+    "productName": "po-edit",
     "appId": "com.po-edit.electron-cra",
+    "asar": false,
+    "extraResources": [
+      {
+        "from": "./build/locale",
+        "to": "./app/build/locale"
+      },
+      {
+        "from": "../gettext-content/build/",
+        "to": "./app/build/"
+      },
+      {
+        "from": "./src/preload",
+        "to": "./app/build/preload"
+      },
+      {
+        "from": "./src/renderer",
+        "to": "./app/build/renderer"
+      }
+    ],
     "mac": {
       "target": [
         "dmg",
@@ -13,18 +33,18 @@
     },
     "files": [
       "index.html",
-      "main.js",
+      "build/main.js",
       "preload.js",
       "renderer.js",
       "package.json"
     ]
   },
   "scripts": {
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder",
+    "pack": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ ELECTRON_CUSTOM_DIR=8.2.0 electron-builder --dir",
+    "dist": "cross-env PRODUCTION=true webpack && cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ ELECTRON_CUSTOM_DIR=8.2.0 electron-builder",
     "start": "electron --inspect=5858 .",
     "test": "jest",
-    "build": "webpack",
+    "build": "cross-env PRODUCTION=true webpack",
     "watch": "webpack --watch",
     "extract:translation": "npx react-gettext-parser --config react-gettext-parser.config --output src/locale/messages.pot 'src/**/{*.js,*.jsx,*.ts,*.tsx}'"
   },
@@ -37,7 +57,7 @@
     "demo"
   ],
   "author": "GitHub",
-  "license": "GPL",
+  "license": "GPL-3.0",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-optional-chaining": "^7.9.0",
@@ -49,6 +69,7 @@
     "babel-cli": "^6.26.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.1",
+    "cross-env": "^7.0.2",
     "electron": "^8.2.0",
     "electron-builder": "^22.3.6",
     "eslint": "^6.8.0",

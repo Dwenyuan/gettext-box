@@ -4,7 +4,15 @@ import { menuTemplate } from './config/menus'
 import { app, BrowserWindow, Menu } from 'electron'
 import * as path from 'path'
 import { initListener } from 'services/listener'
+import { format } from 'url'
 
+const loadTarget = production
+  ? format({
+    pathname: path.join(__dirname, '../index.html'),
+    protocol: 'file:',
+    slashes: true
+  })
+  : "'http://localhost:3000/'"
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -20,7 +28,7 @@ function createWindow () {
   const menu = Menu.buildFromTemplate(menuTemplate(mainWindow))
   Menu.setApplicationMenu(menu)
   // and load the index.html of the app.
-  mainWindow.loadURL('http://localhost:3000/')
+  mainWindow.loadURL(loadTarget)
 
   initListener(mainWindow)
   // Open the DevTools.
