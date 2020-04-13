@@ -4,13 +4,14 @@
  * @export
  * @interface TranslationBean
  */
-export interface TranslationBean {
+export interface PoBean {
   charset: string;
   headers: TranslationHeaders;
-  translations: {
-    [context: string]: {
-      [msgid: string]: Translation;
-    };
+  translations: TranslationsBean;
+}
+export interface TranslationsBean {
+  [context: string]: {
+    [msgid: string]: Translation;
   };
 }
 export interface Comment {
@@ -21,7 +22,9 @@ export interface Comment {
   previous?: string;
 }
 export interface Translation {
+  msgctxt?: string;
   msgid?: string;
+  msgid_plural?: string;
   comments?: Comment;
   msgstr?: string[];
 }

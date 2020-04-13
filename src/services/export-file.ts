@@ -1,10 +1,10 @@
 // eslint-disable-next-line no-unused-vars
-import { TranslationBean } from 'bean/translation-bean'
+import { PoBean } from 'bean/translation-bean'
 import { dialog } from 'electron'
 import { utils, writeFile } from 'xlsx'
 export async function exportFile (
   mainWindow: Electron.BrowserWindow,
-  content: TranslationBean
+  content: PoBean
 ) {
   try {
     console.log(process.sandboxed)

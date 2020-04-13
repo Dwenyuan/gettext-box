@@ -2,12 +2,12 @@ import * as fs from 'fs'
 import { dialog } from 'electron'
 import { po } from 'gettext-parser'
 // eslint-disable-next-line no-unused-vars
-import { TranslationBean } from 'bean/translation-bean'
+import { PoBean } from 'bean/translation-bean'
 
 export async function saveFile (
   mainWindow: Electron.BrowserWindow,
   filePath: string,
-  content: TranslationBean
+  content: PoBean
 ) {
   try {
     if (filePath) {

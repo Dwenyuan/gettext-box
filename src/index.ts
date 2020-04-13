@@ -1,20 +1,13 @@
 // Modules to control application life and create native browser window
 
-import { menuTemplate } from './config/menus'
 import { app, BrowserWindow, Menu } from 'electron'
 import * as path from 'path'
 import { initListener } from 'services/listener'
-import { format } from 'url'
+import { menuTemplate } from './config/menus'
 
-const loadTarget = production
-  ? format({
-    pathname: path.join(__dirname, '../index.html'),
-    protocol: 'file:',
-    slashes: true
-  })
-  : "'http://localhost:3000/'"
-function createWindow () {
+function createWindow (): void {
   // Create the browser window.
+  console.log(path.join(__dirname, 'preload.js'))
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -28,7 +21,12 @@ function createWindow () {
   const menu = Menu.buildFromTemplate(menuTemplate(mainWindow))
   Menu.setApplicationMenu(menu)
   // and load the index.html of the app.
-  mainWindow.loadURL(loadTarget)
+  // console.log('production=>:', production)
+  // if (production) {
+  //   mainWindow.loadFile('build/index.html')
+  // } else {
+  // }
+  mainWindow.loadURL('http://localhost:3000/')
 
   initListener(mainWindow)
   // Open the DevTools.

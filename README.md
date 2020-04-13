@@ -6,6 +6,7 @@
 3. 启动 electron
 
 合并已有的翻译文件，可以导入 excel 模板，暂定模板如下
+**注: domain 暂时会忽略**
 | domain | context | singular_key | singular_str | plural_key | plural_str | comments |
 | ------ | ------- | ------------ | ------------ | ---------- | ---------- | -------- |
 | domain | context | {0}个苹果    | {0} apple    | {0}个苹果  | {0} apples |          |

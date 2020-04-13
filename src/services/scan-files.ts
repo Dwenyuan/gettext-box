@@ -3,7 +3,7 @@ import path from 'path'
 import { extractMessagesFromGlob, toPot } from 'react-gettext-parser'
 import { po } from 'gettext-parser'
 // eslint-disable-next-line no-unused-vars
-import { TranslationHeaders, TranslationBean } from 'bean/translation-bean'
+import { TranslationHeaders, PoBean } from 'bean/translation-bean'
 /**
  * 扫描指定目录下的文件，并提取翻译
  *
@@ -14,7 +14,7 @@ import { TranslationHeaders, TranslationBean } from 'bean/translation-bean'
 export function scanFiles (
   paths: string[],
   headers: TranslationHeaders
-): TranslationBean {
+): PoBean {
   // 要提取的的方法名
   const fnKey = headers['X-Poedit-KeywordsList'] || 'translate'
   // 支持的后缀 'js', 'jsx', 'ts', 'tsx'

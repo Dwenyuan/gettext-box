@@ -17,12 +17,12 @@
         "to": "./app/build/"
       },
       {
-        "from": "./src/preload",
-        "to": "./app/build/preload"
+        "from": "./src/preload.js",
+        "to": "./app/build/preload.js"
       },
       {
-        "from": "./src/renderer",
-        "to": "./app/build/renderer"
+        "from": "./src/renderer.js",
+        "to": "./app/build/renderer.js"
       }
     ],
     "mac": {
