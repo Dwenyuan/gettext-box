@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { Translation, TranslationsBean } from 'bean/translation-bean'
+import {
+  Translation,
+  TranslationsBean,
+  ExcelTranslation
+} from 'bean/translation-bean'
 import { dialog } from 'electron'
 import * as fs from 'fs'
 import { po } from 'gettext-parser'
@@ -50,7 +54,10 @@ export function excel2Translation (workBook: WorkBook): TranslationsBean {
   )
   const contexts = groupBy(content, 'context')
   const contextKeys = Object.keys(groupBy(content, 'context'))
-  function mergeMessage (pre, message): Translation {
+  function mergeMessage (
+    pre: Translation,
+    message: ExcelTranslation
+  ): Translation {
     const {
       context = '',
       singular_key,

@@ -44,3 +44,18 @@ export interface TranslationHeaders {
   'X-Poedit-KeywordsList'?: string;
   'X-Poedit-SearchPath-0'?: string;
 }
+
+/**
+ * excel 支持的列
+ *
+ * @export
+ * @interface ExcelTranslation
+ */
+export interface ExcelTranslation {
+  context?: string;
+  singular_key?: string;
+  singular_str?: string;
+  plural_key?: string;
+  plural_str?: string;
+  comments?: string;
+}

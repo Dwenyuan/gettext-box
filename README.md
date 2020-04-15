@@ -1,4 +1,3 @@
-<script src="https://unpkg.com/browse/mermaid@7.1.1/dist/mermaid.min.js"></script>
 # 开发时启动步骤
 
 1. 启动 gettext-content 的 webpack-server 服务
