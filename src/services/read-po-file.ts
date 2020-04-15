@@ -26,10 +26,7 @@ export function json2Translation (
     '': msgids.reduce(
       (preMessage, msgid) => ({
         ...preMessage,
-        [msgid]: {
-          msgid,
-          msgstr: [source[msgid]]
-        }
+        [msgid]: { msgid, msgstr: [source[msgid]] }
       }),
       {}
     )

@@ -91,6 +91,7 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "gettext-lib": "git+ssh://git@github.com:Dwenyuan/gettext-box.git#master",
     "@babel/traverse": "^7.9.0",
     "@types/lodash": "^4.14.149",
     "axios": "^0.19.2",
