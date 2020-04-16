@@ -3,7 +3,7 @@ import path from 'path'
 import { extractMessagesFromGlob, toPot } from 'react-gettext-parser'
 import { po } from 'gettext-parser'
 // eslint-disable-next-line no-unused-vars
-import { TranslationHeaders, PoBean } from 'bean/translation-bean'
+import { TranslationHeaders, PoBean } from 'gettext-lib'
 /**
  * 扫描指定目录下的文件，并提取翻译
  *

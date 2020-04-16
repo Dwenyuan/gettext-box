@@ -2,7 +2,7 @@ import { transformSync } from '@babel/core'
 import traverse from '@babel/traverse'
 import { isCallExpression, isMemberExpression } from '@babel/types'
 import { CONTEXT, DOMAIN, Option, KEY, PLURAL_KEY, SINGULAR_KEY } from 'bean/scanner.bean'
-import { Translation } from 'bean/translation-bean'
+import { Translation } from 'gettext-lib'
 
 const initOption: Option = {
   chained: {

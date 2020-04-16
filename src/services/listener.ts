@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { TranslationHeaders } from 'bean/translation-bean'
+import { TranslationHeaders } from 'gettext-lib'
 // eslint-disable-next-line no-unused-vars
 import { BrowserWindow, ipcMain } from 'electron'
 import { isEmpty } from 'lodash'

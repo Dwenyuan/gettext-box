@@ -1,16 +1,11 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import {
-  Translation,
-  TranslationsBean,
-  ExcelTranslation
-} from 'bean/translation-bean'
 import { dialog } from 'electron'
 import * as fs from 'fs'
 import { po } from 'gettext-parser'
 import { groupBy } from 'lodash'
 import * as path from 'path'
 import { readFile, utils, WorkBook } from 'xlsx'
-
+import { Translation, TranslationsBean, ExcelTranslation } from 'gettext-lib'
 /**
  * 将key-value形式的翻译转换为标准的po结构
  *

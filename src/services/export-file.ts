@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { PoBean } from 'bean/translation-bean'
+import { PoBean } from 'gettext-lib'
 import { dialog } from 'electron'
 import { utils, writeFile } from 'xlsx'
 export async function exportFile (
