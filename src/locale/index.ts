@@ -7,12 +7,15 @@ import { app } from 'electron'
 console.log(po)
 console.log(app.getPath('logs'))
 // eslint-disable-next-line camelcase
+// eslint-disable-next-line @typescript-eslint/camelcase
 const en_US = parse(
   fs.readFileSync(path.resolve(app.getAppPath(), './build/locale/en_US.po')),
   { format: 'jed' }
 )
 // eslint-disable-next-line camelcase
 // eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line @typescript-eslint/camelcase
 const zh_CN = parse(
   fs.readFileSync(path.resolve(app.getAppPath(), './build/locale/zh_CN.po')),
   { format: 'jed' }

@@ -7,7 +7,7 @@ export async function saveFile (
   mainWindow: Electron.BrowserWindow,
   filePath: string,
   content: PoBean
-) {
+): Promise<void> {
   try {
     if (filePath) {
       await fs.promises.writeFile(filePath, po.compile(content))
