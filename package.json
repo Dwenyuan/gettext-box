@@ -41,7 +41,7 @@
   },
   "scripts": {
     "pack": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ ELECTRON_CUSTOM_DIR=8.2.0 electron-builder --dir",
-    "dist": "cross-env PRODUCTION=true webpack && cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ ELECTRON_CUSTOM_DIR=8.2.0 electron-builder",
+    "dist": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ ELECTRON_CUSTOM_DIR=8.2.0 electron-builder",
     "start": "electron --inspect=5858 .",
     "test": "jest",
     "build": "cross-env PRODUCTION=true webpack",

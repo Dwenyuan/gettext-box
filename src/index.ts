@@ -21,12 +21,12 @@ function createWindow (): void {
   const menu = Menu.buildFromTemplate(menuTemplate(mainWindow))
   Menu.setApplicationMenu(menu)
   // and load the index.html of the app.
-  // console.log('production=>:', production)
-  // if (production) {
-  //   mainWindow.loadFile('build/index.html')
-  // } else {
-  // }
-  mainWindow.loadURL('http://localhost:3000/')
+  console.log('production=>:', production)
+  if (production) {
+    mainWindow.loadFile('build/index.html')
+  } else {
+    mainWindow.loadURL('http://localhost:3000/')
+  }
 
   initListener(mainWindow)
   // Open the DevTools.

@@ -14,7 +14,7 @@ import i18n from '../locale'
 const { dnpgettext } = i18n
 console.log('dnpgettext', dnpgettext)
 
-type Menus = Array<MenuItemConstructorOptions | MenuItem>;
+type Menus = Array<MenuItemConstructorOptions | MenuItem>
 export function menuTemplate (mainWindow: BrowserWindow): Menus {
   return [
     {
@@ -50,7 +50,7 @@ export function menuTemplate (mainWindow: BrowserWindow): Menus {
             {
               id: 'open',
               label: '打开po文件',
-              click: async () => {
+              click: async (): Promise<void> => {
                 const { filePath, content } = await readPoFile()
                 mainWindow.webContents.send('readed', { filePath, content })
               }
