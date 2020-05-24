@@ -35,11 +35,13 @@ export function menuTemplate (mainWindow: BrowserWindow): Menus {
           submenu: [
             {
               id: 'from pot',
-              label: '从pot文件新建'
+              label: '从pot文件新建',
+              enabled: false
             },
             {
               id: 'from project',
-              label: '扫描项目新建'
+              label: '扫描项目新建',
+              enabled: false
             }
           ]
         },
@@ -61,7 +63,7 @@ export function menuTemplate (mainWindow: BrowserWindow): Menus {
           id: '12',
           label: '保存',
           accelerator: 'CmdOrCtrl+s',
-          click: () => mainWindow.webContents.send('save-file')
+          click: (): void => mainWindow.webContents.send('save-file')
         },
         {
           id: 'export',
@@ -70,28 +72,33 @@ export function menuTemplate (mainWindow: BrowserWindow): Menus {
             {
               id: 'export excel',
               label: '导出全部为excel',
-              click: () => mainWindow.webContents.send('export-file')
+              click (): void {
+                mainWindow.webContents.send('export-file')
+              }
             },
             {
               id: 'export excel',
               label: '导出未翻译部分为excel',
-              click: () => mainWindow.webContents.send('export-file', true)
+              click (): void {
+                mainWindow.webContents.send('export-file', true)
+              }
             }
           ]
         },
         {
           id: '13',
           label: '卸载文件',
-          click: () => {
+          click (): void {
             mainWindow.webContents.send('unread-file')
           }
         },
         {
           id: '14',
           label: '扫描项目',
-          click: () => {
+          click (): void {
             mainWindow.webContents.send('unread-file')
-          }
+          },
+          enabled: false
         },
         { role: 'close' }
       ]
@@ -103,35 +110,40 @@ export function menuTemplate (mainWindow: BrowserWindow): Menus {
         {
           id: 'from po/pot',
           label: '从po/pot模板合并',
-          click () {
-            // TODO: 读取PO/POT文件
+          click: async (): Promise<void> => {
+            const { content } = await readPoFile()
+            mainWindow.webContents.send('merge-from-pot', { content })
           }
+          // enabled: false
         },
         {
           id: 'from project',
           label: '从项目合并',
-          click: async () => {
+          click: async (): Promise<void> => {
             // TODO: 打开文件夹路径，扫描之
             const trans = await openAndScanFile()
             dialog.showMessageBox(mainWindow, {
               type: 'info',
               message: JSON.stringify(trans)
             })
-          }
+          },
+          enabled: false
         },
         {
           id: 'from excel',
           label: '从excel模板合并',
-          click () {
+          click: async (): Promise<void> => {
             // TODO: 读取excel文件
-          }
+          },
+          enabled: false
         },
         {
           id: 'from json',
           label: '从json模板合并',
-          click () {
+          click: async (): Promise<void> => {
             // TODO: 读取json文件
-          }
+          },
+          enabled: false
         }
       ]
     },

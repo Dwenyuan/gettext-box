@@ -38,9 +38,9 @@ export function initListener (mainWindow: BrowserWindow): void {
       const { paths, transformHeaders } = param
       const dirPaths = isEmpty(paths) ? await selectDirPath() : paths
       if (isEmpty(dirPaths)) {
-        mainWindow.webContents.send('scan-finish')
+        return mainWindow.webContents.send('scan-finish')
       }
-      const message = await scanFiles(dirPaths, transformHeaders)
+      const message = scanFiles(dirPaths, transformHeaders)
       mainWindow.webContents.send('scan-finish', message)
     }
   )
