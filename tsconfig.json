@@ -11,7 +11,8 @@
         "allowJs": true,
         "skipLibCheck": true,
         "outDir": "build",
-        "baseUrl": "./src"
+        "baseUrl": "./src",
+        "typeRoots": ["./src/types"]
     },
     "include": [
         "src"

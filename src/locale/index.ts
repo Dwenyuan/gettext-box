@@ -19,5 +19,4 @@ const zh_CN = parse(
 console.log(en_US)
 
 const i18n = new Jed(en_US)
-
 export default i18n

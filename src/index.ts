@@ -3,11 +3,10 @@
 import { app, BrowserWindow, Menu } from 'electron'
 import * as path from 'path'
 import { initListener } from 'services/listener'
-import { menuTemplate } from './config/menus'
+import { createMenuTemplate } from './config/menus'
 
 function createWindow (): void {
   // Create the browser window.
-  console.log(path.join(__dirname, 'preload.js'))
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -18,7 +17,8 @@ function createWindow (): void {
       preload: path.join(__dirname, 'preload.js')
     }
   })
-  const menu = Menu.buildFromTemplate(menuTemplate(mainWindow))
+  const menuTemplate = createMenuTemplate(mainWindow)
+  const menu = Menu.buildFromTemplate(menuTemplate)
   Menu.setApplicationMenu(menu)
   // and load the index.html of the app.
   console.log('production=>:', production)
