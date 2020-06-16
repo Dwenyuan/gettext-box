@@ -2,6 +2,7 @@ import { json2Translation, excel2Translation } from '../read-po-file'
 import { readFile } from 'xlsx'
 import { resolve } from 'path'
 
+
 describe('测试转换json/excel文件', () => {
   it('测试转换json文件', () => {
     const result = json2Translation({ 名: 'First name' })

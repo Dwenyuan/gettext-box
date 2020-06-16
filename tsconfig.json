@@ -1,20 +1,13 @@
 {
-    "compilerOptions": {
-        "target": "ESNext",
-        "module": "CommonJS",
-        "esModuleInterop": true,
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
-        "allowJs": true,
-        "skipLibCheck": true,
-        "outDir": "build",
-        "baseUrl": "./src",
-        "typeRoots": ["./src/types"]
-    },
-    "include": [
-        "src"
-    ]
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "outDir": "build",
+    "baseUrl": "./src"
+  },
+  "include": ["src"]
 }
