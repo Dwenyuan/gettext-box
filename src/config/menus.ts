@@ -12,8 +12,8 @@ import { readPoFile } from 'services/read-po-file'
 import { openAndScanFile } from 'services/open-and-scan-file'
 import i18n from '../locale'
 
-const { gettext } = i18n
-console.log(gettext)
+const gettext = i18n.gettext.bind(i18n)
+const translate = i18n.translate.bind(i18n)
 
 type Menus = Array<MenuItemConstructorOptions | MenuItem>
 export function createMenuTemplate(mainWindow: BrowserWindow): Menus {
@@ -44,7 +44,7 @@ export function createMenuTemplate(mainWindow: BrowserWindow): Menus {
       submenu: [
         {
           id: 'new',
-          label: i18n.translate('new project').fetch(),
+          label: translate('new project').fetch(),
           submenu: [
             {
               id: 'from pot',

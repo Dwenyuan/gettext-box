@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "执行测试",
-            "program": "${workspaceFolder}/node_modules/.bin/jest",
+            "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
             "skipFiles": [
                 "<node_internals>/**"
             ]
@@ -17,7 +17,7 @@
             "type": "node",
             "request": "launch",
             "name": "启动Electron",
-            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.ps1",
             "cwd": "${workspaceRoot}",
             "protocol": "inspector",
             "program": "${workspaceFolder}/build/main.js",
@@ -34,7 +34,7 @@
             "type": "node",
             "request": "launch",
             "name": "启动main",
-            "program": "${workspaceFolder}/node_modules/.bin/webpack",
+            "program": "${workspaceFolder}/node_modules/webpack/bin/webpack.js",
             "skipFiles": [
                 "<node_internals>/**"
             ],
