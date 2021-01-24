@@ -39,6 +39,10 @@ graph LR;
    1. [x] 考虑其它链式调用方法名,这里也要支持自定义方法名
    2. [x] 支持 `js`,`ts`,`jsx`,`tsx` 类型文件
    3. [x] babel转换ast的注释结构不能直接定位到对应方法,需要另想它法
+2. [ ] 更新翻译
+   1. [ ] 从po/pot文件更新翻译
+   2. [ ] 扫描项目更新项目
+3. [x] 导出已翻译/未翻译条目为 excel
 
 ```javascript
 i18n
@@ -47,7 +51,7 @@ i18n
   .ifPlural(1, "default %d keys")
   .fetch(1);
 ```
-2. [ ] 扫描 `gettext` 方法 形如
+1. [ ] 扫描 `gettext` 方法 形如
    1. [ ] 这是需要支持自定义方法名称
 ```javascript
 gettext = function ( key )
